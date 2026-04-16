@@ -1,0 +1,256 @@
+Instructions
+Generate test cases for Dealer Management System (DMS) covering:
+User Management
+Sales Module
+(Optional) Competitor Analysis Module
+Ask me 6 questions for framework creation
+Ask the next question only after I answer the previous one
+Follow a step-by-step approach
+Context
+
+Act like an Automobile Domain Functional Testing Expert with strong experience in:
+
+Dealer Management Systems (DMS)
+Sales workflows (Lead → Booking → Delivery)
+Role-based access systems (Admin, Dealer)
+Web application testing
+Example
+
+TC-ID: TC001
+Priority: P1
+Test Description: Verify that a dealer can successfully create a vehicle sale order
+
+Preconditions:
+
+Application is up and running
+User logged in as Dealer
+Vehicle inventory is available
+
+Test Steps:
+
+Login to the application
+Navigate to Sales module
+Click on “Create New Sale”
+Enter customer details
+Select vehicle from inventory
+Confirm booking
+
+Expected Result:
+
+Sale order should be created successfully
+Confirmation message should be displayed
+
+Test Data:
+
+Dealer ID: D123
+Vehicle: SUV Model X
+Customer Name: Ravi Kumar
+Booking Amount: ₹50,000
+
+Tone:
+Use STRICTLY professional tone in:
+Test cases
+Review comments
+Summary
+
+Output:
+Display results in table format
+Include:
+TC-ID
+Priority
+Description
+Preconditions
+Test Steps
+Expected Result
+Test Data
+Persona:
+ Act as a QA Team Lead
+Provide review comments on test cases 
+
+Great—let’s build this the right way, step by step, like we would in a real QA strategy workshop.
+
+Question 1/6:
+What are the user roles and access levels in your Dealer Management System?
+
+For example:
+
+Admin (full control?)
+Dealer (limited to own dealership?)
+Sales Executive (only sales module?)
+Any others (Finance, Inventory Manager, etc.)
+
+Please list all roles and briefly describe what each role can do.
+
+Dealer (limited to own dealership?)
+
+Got it—currently we have:
+
+Dealer → Limited access to their own dealership data
+
+To ensure proper role-based test coverage, we need clarity on whether additional roles exist or if this is a single-role system.
+
+Question 2/6:
+Are there any other roles in the system (e.g., Admin, Sales Executive, Finance), or is Dealer the only role?
+
+If yes, please list them with a brief description of their access.
+
+Dealers - sales - competitor data- outlets and econimic groups list 
+
+Understood. Based on your input, I’m interpreting the system roles and access as:
+
+Dealer
+Access to Sales module
+Access to Competitor data
+Access to Outlets
+Access to Economic Groups list
+Restricted to own dealership data only
+
+If this interpretation needs correction, we can refine it later.
+
+Question 3/6:
+
+What are the key workflows in the Sales Module?
+
+For example (typical DMS flow):
+
+Lead Creation
+Lead Conversion → Booking
+Booking → Invoice
+Invoice → Delivery
+
+Please confirm your exact flow (step-by-step) or share your version.
+
+Lead Creation
+
+Noted.
+
+Sales Workflow (current scope): Lead Creation
+
+To ensure meaningful test coverage, we need to understand what happens inside this flow.
+
+Question 4/6:
+
+What are the mandatory fields and validations in the Lead Creation process?
+
+For example:
+
+Customer Name (mandatory?)
+Mobile Number (format validation?)
+Vehicle Interest (dropdown?)
+Source (walk-in, online, referral?)
+
+Please list:
+
+Mandatory fields
+Key validations (format, uniqueness, etc.)
+Vehicle Interest (dropdown)
+
+Got it.
+
+Vehicle Interest → Dropdown field (assumed mandatory)
+
+To build complete and high-quality test cases, we need a few more critical inputs for Lead Creation.
+
+Question 5/6:
+
+What are the other mandatory fields in Lead Creation apart from Vehicle Interest?
+
+For example:
+
+Customer Name
+Mobile Number
+Email
+Lead Source
+
+Please list all mandatory fields.
+
+Lead Source
+
+Understood.
+
+So far, for Lead Creation, we have:
+
+Vehicle Interest → Dropdown (mandatory)
+Lead Source → (assumed mandatory)
+
+We’ll proceed with this and can refine later if needed.
+
+Question 6/6 (Final):
+
+Do you want negative test scenarios and edge cases included in the test cases?
+
+For example:
+
+Invalid or missing inputs
+Unauthorized access
+Duplicate leads
+System/network failures
+
+Please confirm: Yes / No (or specify any particular areas to focus on).
+
+Invalid or missing inputs
+
+Understood. We will include negative scenarios focused on invalid and missing inputs.
+
+Based on the provided inputs, here is the structured test case suite for the Dealer Management System (DMS) – Lead Creation, along with QA review comments.
+
+
+
+
+TEST CASE SUITE – DEALER MANAGEMENT SYSTEM (DMS)
+Module: Sales → Lead Creation
+Test Cases
+TC-ID	Priority	Description	Preconditions	Test Steps	Expected Result	Test Data
+TC001	P1	Verify dealer can create a lead with valid mandatory inputs	Application is up and running; Dealer is logged in	1. Login as Dealer
+2. Navigate to Sales → Lead Creation
+3. Select Vehicle Interest
+4. Select Lead Source
+5. Click Submit	Lead should be created successfully and confirmation message should be displayed	Vehicle Interest: SUV Model X
+Lead Source: Walk-in
+TC002	P1	Verify system behavior when Vehicle Interest is not selected	Application is up and running; Dealer is logged in	1. Navigate to Lead Creation
+2. Leave Vehicle Interest empty
+3. Select Lead Source
+4. Click Submit	System should display validation error for missing Vehicle Interest	Vehicle Interest: NULL
+Lead Source: Online
+TC003	P1	Verify system behavior when Lead Source is not selected	Application is up and running; Dealer is logged in	1. Navigate to Lead Creation
+2. Select Vehicle Interest
+3. Leave Lead Source empty
+4. Click Submit	System should display validation error for missing Lead Source	Vehicle Interest: Sedan Model Y
+Lead Source: NULL
+TC004	P2	Verify system prevents submission when all mandatory fields are missing	Application is up and running; Dealer is logged in	1. Navigate to Lead Creation
+2. Do not enter any data
+3. Click Submit	System should display validation errors for all mandatory fields	Vehicle Interest: NULL
+Lead Source: NULL
+TC005	P2	Verify dropdown values for Vehicle Interest are displayed correctly	Application is up and running; Dealer is logged in	1. Navigate to Lead Creation
+2. Click Vehicle Interest dropdown	All available vehicle options should be displayed correctly	N/A
+TC006	P2	Verify dropdown values for Lead Source are displayed correctly	Application is up and running; Dealer is logged in	1. Navigate to Lead Creation
+2. Click Lead Source dropdown	All lead source options should be displayed correctly	N/A
+TC007	P1	Verify dealer cannot create lead outside their dealership scope	Application is up and running; Dealer is logged in	1. Attempt to create lead for another dealership (if applicable)	System should restrict access and prevent cross-dealership data creation	Dealer ID: D123
+TC008	P2	Verify system behavior on page refresh during lead creation	Application is up and running; Dealer is logged in	1. Enter partial data
+2. Refresh the page	Entered data should be cleared or handled as per system design	Partial inputs
+TC009	P2	Verify validation message clarity for missing inputs	Application is up and running; Dealer is logged in	1. Submit form with missing fields	Error messages should be clear, user-friendly, and field-specific	NULL inputs
+
+
+
+
+QA Review Comments (As QA Team Lead)
+Coverage Assessment:
+Current test cases cover positive flow, mandatory validations, and dropdown validations. However, coverage is limited due to incomplete field details.
+Gaps Identified:
+Missing customer-related fields (Name, Mobile Number, etc.)
+No duplicate lead validation (important in real DMS systems)
+No data persistence validation (DB level)
+No UI/UX validations (field alignment, default values)
+Risk Areas:
+Lead data integrity issues due to minimal validations
+Potential for incomplete or low-quality leads entering the system
+Recommendations:
+Confirm full list of mandatory fields
+Add mobile/email validation scenarios
+Include integration test cases (CRM, inventory linkage)
+Add boundary and equivalence partitioning techniques
+Next Steps:
+Once additional inputs are provided, expand coverage to:
+End-to-end flow (Lead → Booking → Delivery)
+Competitor module validation
+Outlet & Economic group mapping
